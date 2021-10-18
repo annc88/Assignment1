@@ -1,2 +1,85 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+#include <iostream>
+#include <vector>
+#include <list>
+using namespace std;
+using std::string;
+
+//3. Abstract Class
+class AbstractCustomer {
+virtual void CheckMembershipStatus()=0;
+virtual void CheckPoints()=0;
+};
+class Customer:AbstractCustomer {
+private: //4. Access Specifiers
+int MembershipDate;
+double TxnAmt;
+protected :
+string Name;
+double EarnedPoints;
+public:
+Customer (string name, int yyyymmdd, double txnAmt, double earnedPoints){ //Constructor
+Name = name;
+EarnedPoints = earnedPoints;
+setMembershipDate(yyyymmdd);
+setTxnAmt(txnAmt);
+}
+void setMembershipDate(int yyyymmdd){
+MembershipDate = yyyymmdd;
+}
+int getMembershipDate () {
+return MembershipDate;
+}
+void setTxnAmt (double txnAmt){
+TxnAmt = txnAmt;
+}
+double getTxnAmt(){
+return TxnAmt;
+}
+void CheckMembershipStatus(){
+bool ValidDate = true;
+if (MembershipDate >= 20211015){
+cout << "Your Membership Date is " << MembershipDate << ". Not Expired"<< endl;
+}else{
+cout << "Expired Membership " << MembershipDate << " . Renew Your Membership" << endl;
+}
+}
+void CheckPoints() {
+bool WithPoints = true;
+if (EarnedPoints > 0 ){
+cout << "Your Earned Points are " << EarnedPoints << ". Choose your rewards" << endl;
+} else {
+cout << "You do not have points yet. Make sure to convert transactions to points!"<< endl;
+}
+}
+};
+
+//1. Inheritance
+class Member : public Customer{
+public:
+double EarnedPoints;
+double txnAmt;
+Member(string name, int yyyymmdd, double txnAmt, double earnedPoints)
+:Customer(name, yyyymmdd, txnAmt, earnedPoints){
+}
+void CheckRewards() {
+cout << "***Rewards Choice****" << endl;
+
+//19. Vector Sample
+vector <string> RewardsList; //19. Vector
+RewardsList.push_back ("KeyChain = 100 Points");
+RewardsList.push_back ("Wallet = 500 Points");
+RewardsList.push_back ("Air Pod = 1000 Points");
+for (int r=0; r< RewardsList.size(); r++){
+cout << RewardsList[r] << endl;
+}
+}
+};
+int main()
+{
+Member m1= Member ("Nick", 20211027, 1000, 1000);
+Member *ptrM1=&m1;
+cout << "Earned Points of Member1: " << endl; //Pointer
+ptrM1->CheckPoints(); //dynamic pointer
+m1.CheckMembershipStatus();
+m1.CheckRewards();
+}
