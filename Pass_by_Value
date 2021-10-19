@@ -1,0 +1,25 @@
+class Member : public Customer{
+public:
+double EarnedPoints;
+double TxnAmt;
+
+
+Member(string name, int yyyymmdd, double txnAmt, double earnedPoints)
+:Customer(name, yyyymmdd, txnAmt, earnedPoints){
+}
+
+void ConvertPoints(double TxnAmt, double EarnedPoints) {
+    if (EarnedPoints > 0){
+        EarnedPoints = TxnAmt/5 + EarnedPoints;
+        EarnedPoints;
+
+        cout << "You converted " << TxnAmt << " to " << EarnedPoints<< endl;
+    }
+
+};
+int main()
+{
+Member m1= Member ("Nick", 20211027, 1000.0, 100.0);
+m1.ConvertPoints(1500,&150);
+
+}
