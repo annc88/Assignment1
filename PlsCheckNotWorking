@@ -1,0 +1,50 @@
+//There is no error when I compile this one but will not print out as well. 
+//Assing. To create an array of pointers to objects(minimum of 3 elements) of one of your classes
+//and pass this array to a function that display all elements.
+
+//--------------------------------
+//Rewards.h
+//--------------------------------
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class member
+{
+   string prizes;
+   public:
+   member();
+   member(string);
+   virtual void CheckRewards();
+};
+
+member ::member(): prizes("No Reward") {}
+member ::member(string s): prizes(s) {}
+//----------------------------------
+//Rewards.cpp
+//----------------------------------
+#include Rewards.h
+
+void member::CheckRewards(){
+
+   member* arr = new member[3];
+      string prizes[3] = {"Mug", "Coffee Frother", "Coffee Machine"};
+
+     for (int i=0; i<3; i++)
+     {
+         arr[i] = member(prizes[i]);
+         cout << "The Rewards List Are " << prizes[i] << endl;
+      } 
+     delete [] arr;
+}
+//-------------------------------
+//RewardsList.cpp
+//--------------------------
+#include Rewards.h
+
+int main()
+{
+      member CheckRewards();
+      return 0;
+}
